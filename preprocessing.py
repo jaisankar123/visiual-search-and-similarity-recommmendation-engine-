@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 from datetime import datetime
+from collections import defaultdict
 
 # =========================
 # CONFIG
@@ -26,32 +27,24 @@ def parse_conditions(bundle):
     for entry in bundle.get("entry", []):
         res = entry.get("resource", {})
         if res.get("resourceType") == "Condition":
-            conditions.append({
-                "name": res["code"]["coding"][0]["display"],
-                "severity": res.get("severity", {}).get("text"),
-                "status": res["clinicalStatus"]["coding"][0]["code"]
-            })
+            conditions.append(res["code"]["coding"][0]["display"])
     return conditions
 
-def parse_encounters(bundle):
-    encounters = {}
-    for entry in bundle.get("entry", []):
-        res = entry.get("resource", {})
-        if res.get("resourceType") == "Encounter":
-            encounters[res["id"]] = res["period"]["start"]
-    return encounters
-
 def parse_observations(bundle):
-    observations = []
+    """
+    Collect numeric lab values
+    """
+    labs = []
     for entry in bundle.get("entry", []):
         res = entry.get("resource", {})
         if res.get("resourceType") == "Observation":
-            observations.append({
-                "lab": res["code"]["coding"][0]["display"],
-                "value": res.get("valueQuantity", {}).get("value"),
-                "date": res.get("effectiveDateTime")
-            })
-    return observations
+            if "valueQuantity" in res:
+                labs.append({
+                    "lab": res["code"]["coding"][0]["display"],
+                    "value": res["valueQuantity"]["value"],
+                    "date": res.get("effectiveDateTime")
+                })
+    return labs
 
 # =========================
 # FLATTENING LOGIC
@@ -59,74 +52,92 @@ def parse_observations(bundle):
 
 def flatten_bundle(bundle):
     patient = parse_patient(bundle)
-    conditions = parse_conditions(bundle)
-    encounters = parse_encounters(bundle)
-    observations = parse_observations(bundle)
-
     if patient is None:
         return None
 
-    flat_record = {
-        "patient_id": patient.get("id"),
-        "gender": patient.get("gender"),
-        "birthDate": patient.get("birthDate"),
-        "num_conditions": len(conditions),
-        "num_encounters": len(encounters),
-        "num_observations": len(observations),
-        "conditions": [c["name"] for c in conditions],
-        "labs": [o["lab"] for o in observations]
+    conditions = parse_conditions(bundle)
+    observations = parse_observations(bundle)
+
+    # Aggregate lab values per patient (mean)
+    lab_values = defaultdict(list)
+    for obs in observations:
+        lab_values[obs["lab"]].append(obs["value"])
+
+    lab_means = {
+        lab: round(sum(values) / len(values), 3)
+        for lab, values in lab_values.items()
     }
 
-    return flat_record
+    return {
+        "patient_id": patient["id"],
+        "gender": patient.get("gender"),
+        "birthDate": patient.get("birthDate"),
+        "conditions": conditions,
+        "num_conditions": len(conditions),
+        "lab_values": lab_means
+    }
 
 # =========================
-# MAIN (BATCH PROCESSING)
+# NORMALIZATION
+# =========================
+
+def normalize_lab_values(records):
+    """
+    Min–Max normalization across patients
+    """
+    lab_min_max = {}
+
+    # Collect min/max
+    for record in records:
+        for lab, value in record["lab_values"].items():
+            if lab not in lab_min_max:
+                lab_min_max[lab] = {"min": value, "max": value}
+            else:
+                lab_min_max[lab]["min"] = min(lab_min_max[lab]["min"], value)
+                lab_min_max[lab]["max"] = max(lab_min_max[lab]["max"], value)
+
+    # Apply normalization
+    for record in records:
+        normalized = {}
+        for lab, value in record["lab_values"].items():
+            min_v = lab_min_max[lab]["min"]
+            max_v = lab_min_max[lab]["max"]
+            normalized[lab] = round(
+                (value - min_v) / (max_v - min_v), 4
+            ) if max_v > min_v else 0.0
+
+        record["lab_values"] = normalized
+
+    return records
+
+# =========================
+# MAIN
 # =========================
 
 def main():
     start_time = datetime.now()
-    print(f"Preprocessing started at: {start_time}")
-    print(f"Reading FHIR bundles from: {FHIR_DIR}")
+    print(f"Started at: {start_time}")
 
+    records = []
     files = sorted(FHIR_DIR.glob("patient_*.json"))
-    print(f"Found {len(files)} patient files")
 
-    all_records = []
-    skipped_files = 0
+    for file in files:
+        with open(file, "r", encoding="utf-8") as f:
+            bundle = json.load(f)
+            record = flatten_bundle(bundle)
+            if record:
+                records.append(record)
 
-    for idx, file in enumerate(files, start=1):
-        try:
-            with open(file, "r", encoding="utf-8") as f:
-                bundle = json.load(f)
-                record = flatten_bundle(bundle)
-                if record:
-                    all_records.append(record)
-                else:
-                    skipped_files += 1
-        except Exception as e:
-            skipped_files += 1
-            print(f"Skipping {file.name}: {e}")
-
-        # Progress update
-        if idx % 500 == 0:
-            print(f"Processed {idx}/{len(files)} files...")
+    records = normalize_lab_values(records)
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(all_records, f, indent=2)
+        json.dump(records, f, indent=2)
+
 
     end_time = datetime.now()
-    duration = (end_time - start_time).total_seconds()
-
-    print("\nPreprocessing completed successfully")
     print(f"Finished at: {end_time}")
-    print(f"Total runtime: {duration:.2f} seconds")
-    print(f"Processed records: {len(all_records)}")
-    print(f"Skipped files: {skipped_files}")
+    print(f"Total patients processed: {len(records)}")
     print(f"Output saved to: {OUTPUT_FILE}")
-
-# =========================
-# ENTRY POINT
-# =========================
 
 if __name__ == "__main__":
     main()
