@@ -1,0 +1,205 @@
+{
+  "resourceType": "Bundle",
+  "id": "70b14c8d-0988-4715-ba6f-2496d1791265",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-6923",
+        "gender": "female",
+        "birthDate": "1943-01-27",
+        "meta": {
+          "lastUpdated": "2022-11-04"
+        },
+        "extension": [
+          {
+            "valueBoolean": false
+          }
+        ],
+        "_recordStart": "2020-07-30"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "moderate"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "N18.9",
+              "display": "Chronic Kidney Disease"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "moderate"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "E78.5",
+              "display": "Hyperlipidemia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-6923-0",
+        "status": "finished",
+        "period": {
+          "start": "2021-07-09"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2021-07-09",
+        "code": {
+          "coding": [
+            {
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 4.05,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-6923-0"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2021-07-09",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 260.19,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-6923-0"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-6923-1",
+        "status": "finished",
+        "period": {
+          "start": "2021-12-10"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2021-12-10",
+        "code": {
+          "coding": [
+            {
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 1.29,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-6923-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2021-12-10",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 234.58,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-6923-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-6923-2",
+        "status": "finished",
+        "period": {
+          "start": "2022-04-22"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2022-04-22",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 172.57,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-6923-2"
+        }
+      }
+    }
+  ]
+}

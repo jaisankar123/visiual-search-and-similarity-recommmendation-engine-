@@ -1,0 +1,531 @@
+{
+  "resourceType": "Bundle",
+  "id": "5f9770b9-2a98-41ad-ad3d-b646eeb77d47",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-7674",
+        "gender": "female",
+        "birthDate": "1978-01-18",
+        "meta": {
+          "lastUpdated": "2024-10-12"
+        },
+        "extension": [
+          {
+            "valueBoolean": false
+          }
+        ],
+        "_recordStart": "2022-02-25"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "moderate"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "E11.9",
+              "display": "Type 2 Diabetes Mellitus"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "moderate"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "E78.5",
+              "display": "Hyperlipidemia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "severe"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "N18.9",
+              "display": "Chronic Kidney Disease"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-7674-0",
+        "status": "finished",
+        "period": {
+          "start": "2023-10-07"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-10-07",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 8.74,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-0"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-10-07",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 201.71,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-0"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-10-07",
+        "code": {
+          "coding": [
+            {
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 2.65,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-0"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-7674-1",
+        "status": "finished",
+        "period": {
+          "start": "2023-10-18"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-10-18",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 6.04,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-10-18",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 219.1,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-10-18",
+        "code": {
+          "coding": [
+            {
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 3.71,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-7674-2",
+        "status": "finished",
+        "period": {
+          "start": "2023-11-29"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-11-29",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 8.57,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-2"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-11-29",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 264.06,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-2"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-11-29",
+        "code": {
+          "coding": [
+            {
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 3.41,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-2"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-7674-3",
+        "status": "finished",
+        "period": {
+          "start": "2023-12-01"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-12-01",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 10.56,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-3"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-12-01",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 320.32,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-3"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-12-01",
+        "code": {
+          "coding": [
+            {
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 3.72,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-3"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-7674-4",
+        "status": "finished",
+        "period": {
+          "start": "2024-05-22"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-05-22",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 8.75,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-4"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-05-22",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 150.35,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-4"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-05-22",
+        "code": {
+          "coding": [
+            {
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 4.44,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-4"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-7674-5",
+        "status": "finished",
+        "period": {
+          "start": "2024-06-06"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-06-06",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 7.09,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-5"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-06-06",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 249.07,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-5"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-06-06",
+        "code": {
+          "coding": [
+            {
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 0.77,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-7674-5"
+        }
+      }
+    }
+  ]
+}

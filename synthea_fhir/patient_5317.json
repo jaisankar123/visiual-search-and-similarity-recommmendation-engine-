@@ -1,0 +1,183 @@
+{
+  "resourceType": "Bundle",
+  "id": "4638aed6-f2dd-4444-9176-8c05d05d3847",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-5317",
+        "gender": "male",
+        "birthDate": "1963-01-22",
+        "meta": {
+          "lastUpdated": "2026-01-06"
+        },
+        "extension": [
+          {
+            "valueBoolean": true
+          }
+        ],
+        "_recordStart": "2022-06-30"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active"
+            }
+          ]
+        },
+        "severity": {
+          "text": "mild"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "J44.9",
+              "display": "COPD"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active"
+            }
+          ]
+        },
+        "severity": {
+          "text": "moderate"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "E11.9",
+              "display": "Type 2 Diabetes Mellitus"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-5317-0",
+        "status": "finished",
+        "period": {
+          "start": "2023-02-11"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-5317-1",
+        "status": "finished",
+        "period": {
+          "start": "2024-01-16"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-01-16",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 8.27,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-5317-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-5317-2",
+        "status": "finished",
+        "period": {
+          "start": "2024-05-02"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-5317-3",
+        "status": "finished",
+        "period": {
+          "start": "2024-05-15"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-05-15",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 6.47,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-5317-3"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-5317-4",
+        "status": "finished",
+        "period": {
+          "start": "2024-12-01"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-12-01",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 9.47,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-5317-4"
+        }
+      }
+    }
+  ]
+}

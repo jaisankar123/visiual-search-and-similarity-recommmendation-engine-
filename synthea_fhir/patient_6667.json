@@ -1,0 +1,173 @@
+{
+  "resourceType": "Bundle",
+  "id": "acab8ef4-8a98-4ded-b785-8b13a7a2b6c2",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-6667",
+        "gender": "male",
+        "birthDate": "1978-01-18",
+        "meta": {
+          "lastUpdated": "2025-07-24"
+        },
+        "extension": [
+          {
+            "valueBoolean": false
+          }
+        ],
+        "_recordStart": "2023-07-28"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "moderate"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "E78.5",
+              "display": "Hyperlipidemia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "severe"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "J45.909",
+              "display": "Asthma"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-6667-0",
+        "status": "finished",
+        "period": {
+          "start": "2024-08-20"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-6667-1",
+        "status": "finished",
+        "period": {
+          "start": "2024-08-25"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-08-25",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 282.64,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-6667-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-6667-2",
+        "status": "finished",
+        "period": {
+          "start": "2025-07-14"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2025-07-14",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 216.59,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-6667-2"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-6667-3",
+        "status": "finished",
+        "period": {
+          "start": "2025-12-04"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2025-12-04",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 334.21,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-6667-3"
+        }
+      }
+    }
+  ]
+}

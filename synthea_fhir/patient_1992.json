@@ -1,0 +1,209 @@
+{
+  "resourceType": "Bundle",
+  "id": "a90b1e6a-cbf2-41f1-93e9-0a54a3d54e82",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-1992",
+        "gender": "female",
+        "birthDate": "1946-01-26",
+        "meta": {
+          "lastUpdated": "2026-01-03"
+        },
+        "extension": [
+          {
+            "valueBoolean": false
+          }
+        ],
+        "_recordStart": "2023-10-22"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "mild"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "D64.9",
+              "display": "Anemia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "moderate"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "E03.9",
+              "display": "Hypothyroidism"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "severe"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "J44.9",
+              "display": "COPD"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "mild"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "E78.5",
+              "display": "Hyperlipidemia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-1992-0",
+        "status": "finished",
+        "period": {
+          "start": "2024-08-26"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-08-26",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 322.97,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-1992-0"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-1992-1",
+        "status": "finished",
+        "period": {
+          "start": "2024-10-21"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-10-21",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 197.97,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-1992-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-1992-2",
+        "status": "finished",
+        "period": {
+          "start": "2025-02-23"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2025-02-23",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 285.06,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-1992-2"
+        }
+      }
+    }
+  ]
+}

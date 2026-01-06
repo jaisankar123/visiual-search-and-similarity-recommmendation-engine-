@@ -1,0 +1,227 @@
+{
+  "resourceType": "Bundle",
+  "id": "bf291de0-89b6-4151-81b2-65c8b631e80d",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-0136",
+        "gender": "female",
+        "birthDate": "1966-01-21",
+        "meta": {
+          "lastUpdated": "2025-01-26"
+        },
+        "extension": [
+          {
+            "valueBoolean": false
+          }
+        ],
+        "_recordStart": "2022-03-24"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "moderate"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "I25.10",
+              "display": "Coronary Artery Disease"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "moderate"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "N18.9",
+              "display": "Chronic Kidney Disease"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "mild"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "D64.9",
+              "display": "Anemia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-0136-0",
+        "status": "finished",
+        "period": {
+          "start": "2022-05-17"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2022-05-17",
+        "code": {
+          "coding": [
+            {
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 2.46,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-0136-0"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-0136-1",
+        "status": "finished",
+        "period": {
+          "start": "2022-09-08"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2022-09-08",
+        "code": {
+          "coding": [
+            {
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 3.37,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-0136-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-0136-2",
+        "status": "finished",
+        "period": {
+          "start": "2022-10-06"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2022-10-06",
+        "code": {
+          "coding": [
+            {
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 2.38,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-0136-2"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-0136-3",
+        "status": "finished",
+        "period": {
+          "start": "2023-01-19"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-0136-4",
+        "status": "finished",
+        "period": {
+          "start": "2024-01-08"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-01-08",
+        "code": {
+          "coding": [
+            {
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 4.47,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-0136-4"
+        }
+      }
+    }
+  ]
+}

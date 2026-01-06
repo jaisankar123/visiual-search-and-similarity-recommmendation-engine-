@@ -1,0 +1,240 @@
+{
+  "resourceType": "Bundle",
+  "id": "d003b30e-edaa-4b35-aba2-f877543076fc",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-4654",
+        "gender": "female",
+        "birthDate": "1984-01-17",
+        "meta": {
+          "lastUpdated": "2022-06-15"
+        },
+        "extension": [
+          {
+            "valueBoolean": false
+          }
+        ],
+        "_recordStart": "2019-12-03"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "moderate"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "I10",
+              "display": "Hypertension"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "severe"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "F32.9",
+              "display": "Depression"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "severe"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "E03.9",
+              "display": "Hypothyroidism"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "mild"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "D64.9",
+              "display": "Anemia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-4654-0",
+        "status": "finished",
+        "period": {
+          "start": "2021-05-10"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2021-05-10",
+        "code": {
+          "coding": [
+            {
+              "code": "8480-6",
+              "display": "Systolic Blood Pressure"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 166.53,
+          "unit": "mmHg"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-4654-0"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-4654-1",
+        "status": "finished",
+        "period": {
+          "start": "2021-06-10"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2021-06-10",
+        "code": {
+          "coding": [
+            {
+              "code": "8480-6",
+              "display": "Systolic Blood Pressure"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 169.35,
+          "unit": "mmHg"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-4654-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-4654-2",
+        "status": "finished",
+        "period": {
+          "start": "2021-12-13"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2021-12-13",
+        "code": {
+          "coding": [
+            {
+              "code": "8480-6",
+              "display": "Systolic Blood Pressure"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 135.26,
+          "unit": "mmHg"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-4654-2"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-4654-3",
+        "status": "finished",
+        "period": {
+          "start": "2022-04-06"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2022-04-06",
+        "code": {
+          "coding": [
+            {
+              "code": "8480-6",
+              "display": "Systolic Blood Pressure"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 180.14,
+          "unit": "mmHg"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-4654-3"
+        }
+      }
+    }
+  ]
+}

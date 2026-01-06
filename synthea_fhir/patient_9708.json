@@ -1,0 +1,245 @@
+{
+  "resourceType": "Bundle",
+  "id": "44b529d0-31ae-4130-a235-458dff39d626",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-9708",
+        "gender": "female",
+        "birthDate": "1971-01-20",
+        "meta": {
+          "lastUpdated": "2025-02-15"
+        },
+        "extension": [
+          {
+            "valueBoolean": false
+          }
+        ],
+        "_recordStart": "2022-03-26"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "severe"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "D64.9",
+              "display": "Anemia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "mild"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "E11.9",
+              "display": "Type 2 Diabetes Mellitus"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-9708-0",
+        "status": "finished",
+        "period": {
+          "start": "2022-09-02"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2022-09-02",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 5.89,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-9708-0"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-9708-1",
+        "status": "finished",
+        "period": {
+          "start": "2022-10-13"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2022-10-13",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 9.58,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-9708-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-9708-2",
+        "status": "finished",
+        "period": {
+          "start": "2023-09-11"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-9708-3",
+        "status": "finished",
+        "period": {
+          "start": "2023-11-03"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-11-03",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 8.21,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-9708-3"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-9708-4",
+        "status": "finished",
+        "period": {
+          "start": "2024-04-22"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-04-22",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 6.78,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-9708-4"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-9708-5",
+        "status": "finished",
+        "period": {
+          "start": "2024-04-23"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-9708-6",
+        "status": "finished",
+        "period": {
+          "start": "2024-05-17"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-05-17",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 6.87,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-9708-6"
+        }
+      }
+    }
+  ]
+}

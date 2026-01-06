@@ -1,0 +1,251 @@
+{
+  "resourceType": "Bundle",
+  "id": "636dfa8d-ac37-45f9-851c-6e41866a65e4",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-9601",
+        "gender": "female",
+        "birthDate": "1986-01-16",
+        "meta": {
+          "lastUpdated": "2025-07-02"
+        },
+        "extension": [
+          {
+            "valueBoolean": false
+          }
+        ],
+        "_recordStart": "2023-02-28"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "mild"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "N18.9",
+              "display": "Chronic Kidney Disease"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "severe"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "E11.9",
+              "display": "Type 2 Diabetes Mellitus"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "severe"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "D64.9",
+              "display": "Anemia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "severe"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "E03.9",
+              "display": "Hypothyroidism"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-9601-0",
+        "status": "finished",
+        "period": {
+          "start": "2023-10-15"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-10-15",
+        "code": {
+          "coding": [
+            {
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 3.63,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-9601-0"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-10-15",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 7.1,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-9601-0"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-9601-1",
+        "status": "finished",
+        "period": {
+          "start": "2023-12-30"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-12-30",
+        "code": {
+          "coding": [
+            {
+              "code": "2160-0",
+              "display": "Creatinine"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 4.88,
+          "unit": "mg/dL"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-9601-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-12-30",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 10.14,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-9601-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-9601-2",
+        "status": "finished",
+        "period": {
+          "start": "2024-02-16"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-02-16",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 9.66,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-9601-2"
+        }
+      }
+    }
+  ]
+}

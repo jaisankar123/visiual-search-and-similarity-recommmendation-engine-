@@ -1,0 +1,193 @@
+{
+  "resourceType": "Bundle",
+  "id": "59107896-37f8-440e-88a6-bac5880390fd",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-3865",
+        "gender": "male",
+        "birthDate": "1950-01-25",
+        "meta": {
+          "lastUpdated": "2025-11-01"
+        },
+        "extension": [
+          {
+            "valueBoolean": false
+          }
+        ],
+        "_recordStart": "2023-08-25"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "severe"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "E11.9",
+              "display": "Type 2 Diabetes Mellitus"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "moderate"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "J45.909",
+              "display": "Asthma"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-3865-0",
+        "status": "finished",
+        "period": {
+          "start": "2023-09-26"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2023-09-26",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 7.91,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-3865-0"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-3865-1",
+        "status": "finished",
+        "period": {
+          "start": "2023-12-20"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-3865-2",
+        "status": "finished",
+        "period": {
+          "start": "2024-10-04"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2024-10-04",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 7.53,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-3865-2"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-3865-3",
+        "status": "finished",
+        "period": {
+          "start": "2025-02-12"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-3865-4",
+        "status": "finished",
+        "period": {
+          "start": "2025-05-14"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-3865-5",
+        "status": "finished",
+        "period": {
+          "start": "2025-09-10"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2025-09-10",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 8.02,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-3865-5"
+        }
+      }
+    }
+  ]
+}

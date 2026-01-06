@@ -1,0 +1,204 @@
+{
+  "resourceType": "Bundle",
+  "id": "4d34efe7-f24f-4268-8afe-8cbcf2574182",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-3486",
+        "gender": "female",
+        "birthDate": "1979-01-18",
+        "meta": {
+          "lastUpdated": "2022-10-31"
+        },
+        "extension": [
+          {
+            "valueBoolean": false
+          }
+        ],
+        "_recordStart": "2019-12-10"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "moderate"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "E11.9",
+              "display": "Type 2 Diabetes Mellitus"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "severity": {
+          "text": "severe"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "M19.90",
+              "display": "Osteoarthritis"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-3486-0",
+        "status": "finished",
+        "period": {
+          "start": "2020-02-05"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2020-02-05",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 7.33,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-3486-0"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-3486-1",
+        "status": "finished",
+        "period": {
+          "start": "2020-05-21"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2020-05-21",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 9.37,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-3486-1"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-3486-2",
+        "status": "finished",
+        "period": {
+          "start": "2021-07-12"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2021-07-12",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 9.54,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-3486-2"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-3486-3",
+        "status": "finished",
+        "period": {
+          "start": "2021-07-22"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "effectiveDateTime": "2021-07-22",
+        "code": {
+          "coding": [
+            {
+              "code": "4548-4",
+              "display": "Hemoglobin A1c"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 8.85,
+          "unit": "%"
+        },
+        "encounter": {
+          "reference": "Encounter/enc-patient-3486-3"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "enc-patient-3486-4",
+        "status": "finished",
+        "period": {
+          "start": "2021-09-05"
+        }
+      }
+    }
+  ]
+}
