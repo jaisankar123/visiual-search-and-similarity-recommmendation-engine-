@@ -4,13 +4,18 @@ def parse_patient(bundle):
     for entry in bundle.get("entry", []):
         res = entry.get("resource", {})
         if res.get("resourceType") == "Patient":
+            ongoing_care = False
+            for ext in res.get("extension", []):
+                if ext.get("url") == "ongoing-care":
+                    ongoing_care = ext.get("valueBoolean", False)
+
             return {
                 "id": res.get("id"),
                 "gender": res.get("gender"),
                 "birthDate": res.get("birthDate"),
-                "active": int(
-                    res.get("extension", [{}])[0].get("valueBoolean", False)
-                )
+                "ongoing_care": int(ongoing_care),
+                "last_updated": res.get("meta", {}).get("lastUpdated"),
+                "record_start": res.get("_recordStart")
             }
     return None
 
@@ -33,7 +38,13 @@ def parse_encounters(bundle):
     for entry in bundle.get("entry", []):
         res = entry.get("resource", {})
         if res.get("resourceType") == "Encounter":
-            encounters.append(res["id"])
+            encounters.append({
+                "id": res.get("id"),
+                "status": res.get("status"),
+                "start_date": res.get("period", {}).get("start"),
+                "end_date": res.get("period", {}).get("end"),  # None if ongoing
+                "last_updated": res.get("meta", {}).get("lastUpdated")
+            })
     return encounters
 
 
@@ -45,6 +56,9 @@ def parse_observations(bundle):
             observations.append({
                 "lab": res["code"]["coding"][0]["display"],
                 "value": res.get("valueQuantity", {}).get("value"),
-                "date": res.get("effectiveDateTime")
+                "date": res.get("effectiveDateTime"),
+                "encounter_id": res.get("encounter", {})
+                                    .get("reference", "")
+                                    .replace("Encounter/", "")
             })
     return observations
