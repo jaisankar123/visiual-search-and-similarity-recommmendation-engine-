@@ -15,6 +15,7 @@ MIN_VISITS = 3
 MAX_VISITS = 8
 MISSING_DATA_PROB = 0.15
 NOISE_STD = 0.05
+ONGOING_VISIT_PROB = 0.4   # probability that latest visit is ongoing
 
 SEVERITIES = ["mild", "moderate", "severe"]
 
@@ -57,9 +58,8 @@ def random_birthdate():
 
 def patient_dates():
     entry = date.today() - timedelta(days=random.randint(500, 2500))
-    ongoing = random.random() < 0.65
-    last_updated = date.today() if ongoing else entry + timedelta(days=random.randint(200, 1200))
-    return entry, last_updated, ongoing
+    last_updated = date.today()
+    return entry, last_updated
 
 def visit_dates(start, n):
     return sorted(start + timedelta(days=random.randint(0, 900)) for _ in range(n))
@@ -69,8 +69,7 @@ def noisy(value):
 
 # FHIR BUILDERS
 
-def fhir_patient(pid):
-    entry, last_updated, ongoing = patient_dates()
+def fhir_patient(pid, record_start, last_updated, has_ongoing_visit):
     return {
         "resourceType": "Patient",
         "id": pid,
@@ -78,9 +77,10 @@ def fhir_patient(pid):
         "birthDate": random_birthdate().isoformat(),
         "meta": {"lastUpdated": last_updated.isoformat()},
         "extension": [{
-            "valueBoolean": ongoing
+            "url": "ongoing-care",
+            "valueBoolean": has_ongoing_visit
         }],
-        "_recordStart": entry.isoformat()
+        "_recordStart": record_start.isoformat()
     }
 
 def fhir_condition(name, icd, severity, ongoing):
@@ -100,13 +100,35 @@ def fhir_condition(name, icd, severity, ongoing):
         }
     }
 
-def fhir_encounter(eid, visit_date):
-    return {
-        "resourceType": "Encounter",
-        "id": eid,
-        "status": "finished",
-        "period": {"start": visit_date.isoformat()}
-    }
+def fhir_encounter(eid, visit_date, is_latest):
+    if is_latest and random.random() < ONGOING_VISIT_PROB:
+        # Ongoing visit
+        return {
+            "resourceType": "Encounter",
+            "id": eid,
+            "status": "in-progress",
+            "period": {
+                "start": visit_date.isoformat()
+            },
+            "meta": {
+                "lastUpdated": date.today().isoformat()
+            }
+        }
+    else:
+        # Finished visit
+        discharge_date = visit_date + timedelta(days=random.randint(0, 2))
+        return {
+            "resourceType": "Encounter",
+            "id": eid,
+            "status": "finished",
+            "period": {
+                "start": visit_date.isoformat(),
+                "end": discharge_date.isoformat()
+            },
+            "meta": {
+                "lastUpdated": discharge_date.isoformat()
+            }
+        }
 
 def fhir_observation(lab, visit_date):
     if random.random() < MISSING_DATA_PROB:
@@ -134,7 +156,14 @@ def generate_patient_bundle(idx):
     pid = f"patient-{idx:04d}"
     entries = []
 
-    patient = fhir_patient(pid)
+    record_start, last_updated = patient_dates()
+    visits = visit_dates(record_start, random.randint(MIN_VISITS, MAX_VISITS))
+    last_index = len(visits) - 1
+
+    # Decide if patient has ongoing visit
+    has_ongoing_visit = random.random() < ONGOING_VISIT_PROB
+
+    patient = fhir_patient(pid, record_start, last_updated, has_ongoing_visit)
     entries.append({"resource": patient})
 
     selected_conditions = random.sample(
@@ -143,26 +172,30 @@ def generate_patient_bundle(idx):
     )
 
     severities = {c[0]: random.choice(SEVERITIES) for c in selected_conditions}
-    ongoing = patient["extension"][0]["valueBoolean"]
 
     for name, icd in selected_conditions:
         entries.append({
-            "resource": fhir_condition(name, icd, severities[name], ongoing)
+            "resource": fhir_condition(
+                name,
+                icd,
+                severities[name],
+                has_ongoing_visit
+            )
         })
-
-    start = date.fromisoformat(patient["_recordStart"])
-    visits = visit_dates(start, random.randint(MIN_VISITS, MAX_VISITS))
 
     for i, v in enumerate(visits):
         enc_id = f"enc-{pid}-{i}"
-        entries.append({"resource": fhir_encounter(enc_id, v)})
+        encounter = fhir_encounter(enc_id, v, i == last_index and has_ongoing_visit)
+        entries.append({"resource": encounter})
 
-        for condition in severities:
-            for lab in CONDITION_LABS.get(condition, []):
-                obs = fhir_observation(lab, v)
-                if obs:
-                    obs["encounter"] = {"reference": f"Encounter/{enc_id}"}
-                    entries.append({"resource": obs})
+        # Only generate labs for finished encounters
+        if encounter["status"] == "finished":
+            for condition in severities:
+                for lab in CONDITION_LABS.get(condition, []):
+                    obs = fhir_observation(lab, v)
+                    if obs:
+                        obs["encounter"] = {"reference": f"Encounter/{enc_id}"}
+                        entries.append({"resource": obs})
 
     return {
         "resourceType": "Bundle",
@@ -171,7 +204,7 @@ def generate_patient_bundle(idx):
         "entry": entries
     }
 
-# CLI ARGUMENTS
+# CLI
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Synthetic FHIR Patient Generator")
