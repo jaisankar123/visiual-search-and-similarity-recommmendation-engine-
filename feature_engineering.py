@@ -56,110 +56,110 @@ CHRONIC_CONDITIONS = {
 
 def min_max(value, lo, hi):
     if value is None:
-        return None
+        return 0
     if hi == lo:
         return 0.0
     return round((value - lo) / (hi - lo), 4)
 
 def calculate_age(birth_date):
     if not birth_date:
-        return None
+        return 0
     birth = datetime.strptime(birth_date, "%Y-%m-%d").date()
     today = date.today()
     return today.year - birth.year - ((today.month, today.day) < (birth.month, birth.day))
-
-def compute_lab_trends(observations):
-    history = {}
-    for obs in observations:
-        if obs.get("value") is not None:
-            history.setdefault(obs["lab"], []).append((obs["date"], obs["value"]))
-
-    trends = {}
-    for lab, values in history.items():
-        if len(values) < 2:
-            continue
-        values.sort()
-        delta = values[-1][1] - values[0][1]
-        trends[lab] = "increasing" if delta > 0 else "decreasing" if delta < 0 else "stable"
-    return trends
 
 # =====================================================
 # FEATURE ENGINEERING
 # =====================================================
 
 def build_features(bundle):
+    missing_value_count = 0          # nulls + missing observations
+    replaced_with_zero_count = 0     # only null -> 0
+    patient_has_missing = False
+
     patient = parse_patient(bundle)
     if not patient:
-        return None
+        return None, 0, 0, False
 
-    # --- keep only numeric part of patient_id
     patient_numeric_id = patient["id"].split("-")[-1]
 
     conditions = parse_conditions(bundle)
     encounters = parse_encounters(bundle)
     observations = parse_observations(bundle)
 
-    # ---- basic numeric features
+    # =================================================
+    # HANDLE MISSING OBSERVATIONS
+    # =================================================
+
+    if len(observations) == 0:
+        # No labs recorded at all
+        missing_value_count += len(LAB_BOUNDS)
+        patient_has_missing = True
+
+    # Replace null observation values with 0
+    for obs in observations:
+        if obs.get("value") is None:
+            missing_value_count += 1
+            replaced_with_zero_count += 1
+            obs["value"] = 0
+            patient_has_missing = True
+
+    # =================================================
+    # BASIC FEATURES
+    # =================================================
+
     age = calculate_age(patient.get("birthDate"))
     visit_count = len(encounters)
     lab_count = len(observations)
 
-    # ---- binary features
     chronic_flag = int(any(c["name"] in CHRONIC_CONDITIONS for c in conditions))
     active_status = patient.get("active")
 
-    # ---- ordinal severity
     max_severity = max(
         (SEVERITY_MAP.get(c["severity"].lower()) for c in conditions if c.get("severity")),
-        default=None
+        default=0
     )
 
-    # ---- aggregate lab values
-    lab_values = {}
-    missing_lab_count = 0
-    for obs in observations:
-        if obs.get("value") is not None:
-            lab_values.setdefault(obs["lab"], []).append(obs["value"])
-        else:
-            missing_lab_count += 1
+    # =================================================
+    # LAB AGGREGATION
+    # =================================================
 
-    # ---- normalize labs
+    lab_values = {}
+    for obs in observations:
+        lab_values.setdefault(obs["lab"], []).append(obs["value"])
+
     normalized_labs = {}
     for lab, values in lab_values.items():
-        if lab in LAB_BOUNDS and values:
-            avg = sum(values) / len(values)
+        if lab in LAB_BOUNDS:
+            non_zero = [v for v in values if v > 0]
+            avg = sum(non_zero) / len(non_zero) if non_zero else 0
             lo, hi = LAB_BOUNDS[lab]
             normalized_labs[lab] = min_max(avg, lo, hi)
 
-    # ---- narrative_fields (keep all raw info)
-    narrative_fields = {
-        "birthDate": patient.get("birthDate"),
-        "active_status": active_status,
-        "conditions": [
-            {"name": c["name"], "severity": c.get("severity"), "status": c.get("status"), "icd": c.get("icd","")}
-            for c in conditions
-        ],
-        "encounters": [
-            {"id": idx+1, "status": "finished", "date": None}  # Can be filled if encounter dates are available in parser
-            for idx in range(visit_count)
-        ],
-        "lab_observations": observations
-    }
+    # =================================================
+    # OUTPUT RECORD
+    # =================================================
 
-    return {
-        "patient_id": patient_numeric_id,  # numeric only
+    record = {
+        "patient_id": patient_numeric_id,
         "ml_features": {
             "age_norm": min_max(age, 18, 90),
             "visit_count_norm": min_max(visit_count, 1, 15),
             "lab_count_norm": min_max(lab_count, 0, 20),
             "lab_values_norm": normalized_labs,
             "chronic_flag": chronic_flag,
-            "max_severity": max_severity,
-            "missing_lab_count": missing_lab_count
+            "max_severity": max_severity
         },
-        "narrative_fields": narrative_fields,
-        "lab_trends": compute_lab_trends(observations)
+        "narrative_fields": {
+            "birthDate": patient.get("birthDate"),
+            "active_status": active_status,
+            "conditions": conditions,
+            "encounters": encounters,
+            "lab_observations": observations
+        }
     }
+
+    return record, missing_value_count, replaced_with_zero_count, patient_has_missing
 
 # =====================================================
 # MAIN
@@ -168,35 +168,45 @@ def build_features(bundle):
 def main():
     records = []
 
+    total_missing_values = 0
+    total_replaced_with_zero = 0
+    patients_with_missing = 0
+
     files = list(FHIR_DIR.glob("patient_*.json"))
     print(f"Found {len(files)} patient files in {FHIR_DIR}")
 
     for idx, file in enumerate(files, start=1):
-        if not file.is_file():
-            continue
         try:
             with open(file, "r", encoding="utf-8", errors="ignore") as f:
                 bundle = json.load(f)
 
-            record = build_features(bundle)
+            record, missing, replaced, has_missing = build_features(bundle)
+
             if record:
                 records.append(record)
+                total_missing_values += missing
+                total_replaced_with_zero += replaced
+                if has_missing:
+                    patients_with_missing += 1
 
-        except (OSError, json.JSONDecodeError, UnicodeDecodeError) as e:
+        except Exception as e:
             print(f"[SKIPPED] {file.name} → {type(e).__name__}: {e}")
-            continue
 
         if idx % 1000 == 0:
             print(f"Processed {idx}/{len(files)} files")
 
-    total_missing = sum(r["ml_features"].get("missing_lab_count",0) for r in records)
-
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
 
-    print("\n✅ Feature engineering completed successfully")
+    # =================================================
+    # FINAL REPORT
+    # =================================================
+
+    print("\n Feature engineering completed successfully")
     print(f"Patients retained: {len(records)}")
-    
+    print(f" Total missing values detected: {total_missing_values}")
+    print(f" Total missing values replaced with 0: {total_replaced_with_zero}")
+    print(f" Patients with at least one missing value: {patients_with_missing}")
     print(f"Output saved to: {OUTPUT_FILE}")
 
 # =====================================================
