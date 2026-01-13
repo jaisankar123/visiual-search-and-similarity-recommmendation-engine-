@@ -3,7 +3,7 @@ import json
 import time
 import datetime
 from pathlib import Path
-
+import numpy as np
 # =====================================================
 # 1. SUPPRESS TENSORFLOW NOISE
 # =====================================================
@@ -28,7 +28,7 @@ MAPPING_FILE = FAISS_DIR / "index_mapping.json"
 
 MODEL_NAME = "emilyalsentzer/Bio_ClinicalBERT"
 EMBEDDING_VERSION = "v1"
-BATCH_SIZE = 8
+BATCH_SIZE = 8  # INCREASED: Process 12 patients per batch
 MAX_LENGTH = 512  # Bio_ClinicalBERT limit
 
 # =====================================================
@@ -87,6 +87,7 @@ print(f"📄 Loaded {len(patient_data)} patient summaries")
 index_mapping = {}
 start_time = time.time()
 
+# Iterating with the new batch size of 12
 for i in tqdm(range(0, len(patient_data), BATCH_SIZE), desc="Embedding patients"):
     batch = patient_data[i : i + BATCH_SIZE]
 
